@@ -10,17 +10,26 @@ $stmt->bindParam(':details', $details);
 
 $stmt->execute();
 
+#(2) Insert a hall
+$stmt = $conn->prepare("INSERT INTO hall(hall_name, capacity, building_name) VALUES(:hallName, :capacity, :buildingName)");
+$stmt->bindParam(':hallName', $hallName);
+$stmt->bindParam(':capacity', $capacity);
+$stmt->bindParam(':buildingName', $buildingName);
 
-#(2) Insert a class 
+#(2) Insert a module 
+$stmt = $conn->prepare("INSERT INTO module(module_code, instrument_id) VALUES(:moduleCode, :instrumentId)");
+$stmt->bindParam(':moduleCode', $moduleCode);
+$stmt->bindParam(':instrumentId', $instrumentId);
+
+#(2) Insert a class module 
 
 /* This query insert a class to the database with already inserted instrument id */
-$stmt = $conn->prepare("INSERT INTO class(class_id, class_type, num_students, location, monthly_class_fee, instrument_id) VALUES(:classId, :classType, :numStudents, :location, :monthlyClassFee, :instrumentId)");
-$stmt->bindParam(':classId', $classId);
+$stmt = $conn->prepare("INSERT INTO class_module(class_module, class_name, module_code, class_type, monthly_fee) VALUES(:classModule, :className, :moduleCode, :classType, :monthlyFee)");
+$stmt->bindParam(':classModule', $classModule);
+$stmt->bindParam(':className', $className);
+$stmt->bindParam(':moduleCode', $moduleCode);
 $stmt->bindParam(':classType', $classType);
-$stmt->bindParam(':numStudents', $numStudents);
-$stmt->bindParam(':location', $location);
-$stmt->bindParam(':monthlyClassFee', $monthlyClassFee);
-$stmt->bindParam(':instrumentId', $instrumentId);
+$stmt->bindParam(':monthlyFee', $monthlyFee);
 
 $stmt->execute();
 
@@ -110,9 +119,9 @@ $stmt->bindParam(':siblingId', $pgsiblingIdId);
 
 #(7) Insert to takes
 # no need to insert the grade at the begining it comes under update 
-$stmt = $conn->prepare("INSERT INTO takes(student_id, class_id) VALUES(:studentId, :classId)");
+$stmt = $conn->prepare("INSERT INTO takes(student_id, class_module) VALUES(:studentId, :classModule)");
 $stmt->bindParam(':studentId', $studentId);
-$stmt->bindParam(':classId', $classId);
+$stmt->bindParam(':classModule', $classModule);
 
 #(8) Insert grade( update the table takes)
 $stmt = $conn->prepare("UPDATE takes SET grade = :grade WHERE student_id = :studenId, class_id = :classId");
