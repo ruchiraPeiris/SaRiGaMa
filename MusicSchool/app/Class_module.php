@@ -20,6 +20,11 @@ class Class_module
 
     }
 
+    public funciton getGroupClasses(){
+        $user_id = Auth::user()->user_id;
+        $groupClasses = DB::select("SELECT CM.module_code FROM teacher_user_account AS TUA NATURAL JOIN teacher NATURAL JOIN class_teacher_allocation NATURAL JOIN class_module AS CM WHERE TUA.id = ?",[$user_id]);
+    }
+
 #{LAHIRU FINISH THIS}
     public function searchClassModule($id){
 
