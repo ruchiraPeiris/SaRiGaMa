@@ -67,9 +67,7 @@
                 </a>
                 <a href="#!" class="collection-item">Student Registration</a>
                 <a href="#!" class="collection-item">Update Student Details</a>
-                <a href="#!" class="collection-item">Teacher Registration</a>
-                <a href="#!" class="collection-item">Update Teacher Details</a>
-                <a href="#!" class="collection-item">Teacher Payment</a>
+
             </div>
 
         </div>

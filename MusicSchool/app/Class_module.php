@@ -20,12 +20,15 @@ class Class_module
 
     }
 
-
+#{LAHIRU FINISH THIS}
     public function searchClassModule($id){
 
         //query for search and return all class module related data to be fetched to the table
-        $classModule = DB::select('SELECT * FROM class_module NATURAL JOIN hall NATURAL JOIN module NATURAL JOIN instrument WHERE class_module_id ='.$id);
+//        $classModule = DB::select('SELECT * FROM class_module NATURAL JOIN hall NATURAL JOIN module NATURAL JOIN instrument WHERE class_module_id ='.$id);
 
+        $classModule = DB::select("SELECT * FROM class_module NATURAL JOIN hall NATURAL JOIN module NATURAL JOIN instrument WHERE class_module_id LIKE :id OR instrument_name LIKE :id OR class_type LIKE :id OR hall_name LIKE :id",array('id'=> $id."%"));
+
+        dd($classModule);
         return $classModule;
     }
 
