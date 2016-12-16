@@ -143,3 +143,40 @@ ON ST.student_id = TA.student_id
 WHERE CM.module_code LIKE "%" OR CM.class_type LIKE "%" OR CONCAT(ST.std_first_name , ' ', ST.std_last_name) LIKE "%" OR DATE_FORMAT(SA.class_date, "%d-%b-%Y") LIKE "%"
 
 
+#11 Insert to student_attendance table
+$is_present = false;
+$is_late = false;
+if($val == 11){
+	is_present = true;
+}else if($val == 01){
+	is_late = true;
+}
+
+DB::statement("INSERT INTO student_attendance(takes_id, is_late, is_present) 
+	VALUES((SELECT takes_id FROM takes WHERE student_id = ?, AND class_module_id = ?),?,?)",[$student_id, $class_module_id, $is_late, $is_present]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
