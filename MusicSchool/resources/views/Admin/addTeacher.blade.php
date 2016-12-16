@@ -1,6 +1,6 @@
 @extends('Admin.index')
 @section('title')
-    Add Student
+    Add Teacher
 @endsection
 @section('style')
 
@@ -26,80 +26,74 @@
 
 @section('content')
 
-<form method="post" action="#">
+    <form action="{{route('save_teacher')}}" method="POST">
+        {!!csrf_field()!!}
 
-    <div class="container " style="padding: 10px;">
-        <div class="row">
-            <div class="col-lg-12">
-                <br><br>
-                <div class="row">
-                    <form class="col s12">
-                        <div class="row">
-                            <div class="input-field nom col m6 s12">
-                                <input type="text" name="first_name" value=""/>
-                                <label for="first_name">First Name</label>
-                            </div>
-                            <div class="input-field nom col m6 s12">
-                                <input type="text" name="last_name" value="">
-                                <label for="last_name">Last Name</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field nom col m12 s12">
-                                <input type="text" name="id_number" value="">
-                                <label for="id_number">ID Number</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field nom col m6 s12">
-                                <input type="tel" name="tel_home" value="">
-                                <label for="tel_home">Tel-home</label>
-                            </div>
+        <div class="container " style="padding: 5px;">
+            <div class="row">
+                <div class="col-lg-12">
+                    <br><br>
 
-                            <div class="input-field nom col m6 s12">
-                                <input type="tel" name="tel_mobile" value="">
-                                <label for="tel-mobile">Tel-mobile</label>
-                            </div>
+                    <div class="row">
+                        <div class="card-panel teal lighten-2">
+                            <h6>Teacher Details</h6>
+                        </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="input-field nom col m12 s12">
+                            <input type="text" name="teacher_id"/>
+                            <label for="teacher_id">ID Number</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field nom col m4 s12">
+                            <input type="text" name="t_first_name" value=""/>
+                            <label for="t_first_name">First Name</label>
+                        </div>
+                        <div class="input-field nom col m4 s12">
+                            <input type="text" name="t_middle_name" value="">
+                            <label for="t_middle_name">Middle Name</label>
+                        </div>
+                        <div class="input-field nom col m4 s12">
+                            <input type="text" name="t_last_name" value="">
+                            <label for="t_last_name">Last Name</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field nom col m12 s12">
+                            <input type="text" name="t_dob">
+                            <label for="t_dob">Date Of Birth</label>
                         </div>
 
-                        <div class="row">
-                            <div class="input-field nom col m6 s12">
-                                <input type="text" name="address" value="">
-                                <label for="address">Qualification</label>
-                            </div>
-                            <div class="input-field nom col m6 s12">
-                                <input type="text" id="datepicker">
-                                <label for="dob">Date Of Birth</label>
-                            </div>
-                        </div >
-                        <div class="row">
-                            <select multiple>
-                                <option value="" disabled selected>Select Course</option>
-                                <option value="1">MC-5832</option>
-                                <option value="2">MC-5825</option>
-                                <option value="3">MC-8325</option>
-                            </select>
-                            <div class="row">
-                                <div class="input-field nom col m4 s12">
-                                </div>
-                                <div class="col m5">
-                                    <p class="right-align"><button id="add-student-profile" class="btn btn-large waves-effect waves-light midddle" style="background-color:#00838f" type="submit" name="action">Add Teacher Profile</button></p>
-                                </div>
-                            </div>
+                        <div class="input-field nom col m12 s12">
+                            <input type="text" name="qualifications">
+                            <label for="qualifications">Qualification</label>
                         </div>
-                    </form>
+                    </div>
+
+                    <div class="row">
+                        <p class="right-align">
+                            <button id="save"
+                                    class="btn btn-large waves-effect waves-light midddle"
+                                    style="background-color:#00838f" type="submit" name="action">Save
+                            </button>
+                        </p>
+                    </div>
+
+                    <div class="row">
+                        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+                            <a class="btn-floating btn-large red" href="">
+                                <i class="extar-large material-icons">home</i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-            <a class="btn-floating btn-large red" href="">
-                <i class="extar-large material-icons">home</i>
-            </a>
-        </div>
-    </div>
-</form>
+    </form>
 
 @endsection
 
