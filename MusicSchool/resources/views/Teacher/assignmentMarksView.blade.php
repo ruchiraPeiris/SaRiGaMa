@@ -1,0 +1,78 @@
+@extends('Admin.index')
+@section('title')
+    Assignment Marks
+@endsection
+
+@section('style')
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+    <link href="../../../public/css/jquery-ui.css" rel="stylesheet">
+    <link href="../../../public/css/jquery-ui.min.css" rel="stylesheet">
+    <script src="../../../public/js/jquery-ui.js" type="text/javascript"></script>
+    <script src="../../../public/js/jquery-ui.min.js" type="text/javascript"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('select').material_select();
+        });
+        var d = new Date();
+        d.setFullYear(d.getFullYear() - 100);
+        $('.datepicker').pickadate(
+            {
+                selectMonths: true,
+                selectYears: d,
+                max: new Date()
+            });
+
+    </script>
+@endsection
+@section('content')
+    @if(count($errors)>0)
+        <div class="row">
+            <div class="col-lg-12">
+                <ul>
+                    @foreach($errors->all() as $error)
+                        <li>
+                            {{$error}}
+                        </li>
+                    @endforeach
+
+                </ul>
+
+            </div>
+
+        </div>
+    @endif
+
+
+
+    <div class="container " style="padding: 5px;">
+        <div class="row">
+            <div class="col-lg-12">
+                <br><br>
+                {{csrf_field()}}
+                <div class="card-panel teal lighten-2">
+                    <h6>Assignment Marks</h6>
+                </div>
+                <table class="striped">
+                    <thead>
+                    <tr>
+                        <th data-field="student_id">Student ID</th>
+                        <th data-field="marks">Marks</th>
+                    </tr>
+                    </thead>
+                    @foreach ($studentsMarks as $studentsMarks)
+                        <tr>
+                            <td>{{ $studentsMarks->student_id }}</td>
+                            <td>{{ $studentsMarks->marks }}</td>
+                        </tr>
+                    @endforeach
+                </table>
+            </div>
+        </div>
+    </div>
+@endsection
