@@ -33,4 +33,7 @@ class UserController
         }
 
     }
+    public  function register(Request $request){
+        (new User())->saveUser($request);
+    }
 }

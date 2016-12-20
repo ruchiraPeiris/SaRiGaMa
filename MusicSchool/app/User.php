@@ -3,6 +3,7 @@
 namespace App;
 
 use Doctrine\DBAL\Exception\ReadOnlyException;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use DB;
@@ -11,7 +12,7 @@ class User implements \Illuminate\Contracts\Auth\Authenticatable
 {
 
     public $id;
-    public $user_name ;
+    public $user_name;
     public $password;
     public $account_type;
 
@@ -20,6 +21,15 @@ class User implements \Illuminate\Contracts\Auth\Authenticatable
      *
      * @return string
      */
+
+    public function saveUser(Request $request)
+    {
+        $user_name = $request['user_name'];
+        $password= $request['password'];
+        $account_type=$request['account_type'];
+        DB::statement('insert into user_account (user_name,password, account_type )VALUES (?,?,?)', [$user_name,$password,$account_type]);
+    }
+
     public function getAuthIdentifierName()
     {
         return "id";
@@ -85,17 +95,17 @@ class User implements \Illuminate\Contracts\Auth\Authenticatable
         // TODO: Implement getRememberTokenName() method.
     }
 
-    public static function authenticate($user_name, $password){
+    public static function authenticate($user_name, $password)
+    {
 //        $this->user_name = $request['user_name'];
 //        $this->password = $request['password'];
 //        $this->account_type = $request['account_type'];
 
-        $u = DB::select("SELECT id,user_name, password, account_type FROM user_account WHERE user_name = ? AND password = ? ",[$user_name, $password]);
+        $u = DB::select("SELECT id,user_name, password, account_type FROM user_account WHERE user_name = ? AND password = ? ", [$user_name, $password]);
 
-        if (count($u) == 0){
+        if (count($u) == 0) {
             return null;
         }
-
 
 
         $user = new User();

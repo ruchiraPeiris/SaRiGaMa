@@ -42,28 +42,25 @@
 
                 <h2>Add Payment</h2>
                 {{--                <form action="{{route('save_course')}}" method="POST">--}}
-                <form action="{{route('save_student_payment')}}" method="POST">
+                <form action="{{route('save_payment')}}" method="POST">
                     {{csrf_field()}}
-                    {{--<div class="form-group">--}}
-                        {{--<label for="title">Payment ID:</label>--}}
-                        {{--<input type="text" class="form-control" name='payment_id' id="payment_id"--}}
-                               {{--placeholder="Enter payment id">--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group">--}}
-                        {{--<label for="instrument">Paid Date:</label>--}}
-                        {{--<input type="text" class="form-control" name='paid_date' id="paid_date"--}}
-                               {{--placeholder="Enter paid date">--}}
-                    {{--</div>--}}
-
-
                     <div class="form-group">
-                        <label for="location">Enter student ID : </label>
-                        <input id="student_id" type="text" class="form-control" name="student_id" required>
+                        <label for="module">Select module : </label>
 
-
+                        <select class="form-control" name="takes_id">
+                            @foreach($modules as $module)
+                                <option value="{{$module->takes_id}}">{{$module->module_code}} </option>
+                            @endforeach
+                        </select>
                     </div>
 
-                    <button type="submit" class="btn btn-default"
+                    <div class="form-group">
+                        <label for="fee">Paid Amount:</label>
+                        <input type="text" class="form-control" name="paid_amt" id="paid_amt"
+                               placeholder="Enter paid amount">
+                    </div>
+
+                    <button type="select" class="btn btn-default"
                             style="float:left;  color: #d9edf7; background-color: #2a88bd" value="submit">Save
                     </button>
                     <input type="hidden" name="_token" value="{{Session::token()}}">

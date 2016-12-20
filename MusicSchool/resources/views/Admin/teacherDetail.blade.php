@@ -12,7 +12,7 @@
 
 
     <div>
-        <h1> Teacher Salary </h1>
+        <h1> Teacher Detail </h1>
     </div>
 
 

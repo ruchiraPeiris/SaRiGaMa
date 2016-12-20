@@ -4,6 +4,7 @@ namespace App;
 
 //use Illuminate\Database\Eloquent\Model;
 use DB;
+use Illuminate\Http\Request;
 
 class Student
 {
@@ -48,6 +49,11 @@ class Student
 //
 
         return $students_name_id;
+    }
+    public function getStudentByID(Request $request){
+        $id=$request['student_id'];
+        $modules=DB::select('select * from class_module NATURAL JOIN takes where student_id= ?',[$id]);
+        return $modules;
     }
 
 

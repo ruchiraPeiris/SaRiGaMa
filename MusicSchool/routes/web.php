@@ -29,6 +29,7 @@ Route::get('/admin/a', function () {
 
 })->name('first_page');
 
+ 
 Route::get('/type', 'CourseController@SignUp');
 
 Auth::routes();
@@ -373,6 +374,15 @@ Route::group(['middleware' => ['web']], function (){
         'uses' => 'StudentController@saveStudentTakes',
         'as' => 'save_student_take'
     ])->middleware(App\Http\Middleware\AdminMiddleware::class);
+    
+Route::post('/studentPayment', [
+        'uses' => 'FeePaymentController@studentPay',
+        'as' => 'save_student_payment'
+    ])->middleware(App\Http\Middleware\TeacherMiddleware::class);
 
+ Route::post('/Register', [
+        'uses' => 'UserController@register',
+        'as' => 'register_user'
+    ]);
 
 });

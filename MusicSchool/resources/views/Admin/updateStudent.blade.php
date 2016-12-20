@@ -47,11 +47,7 @@
                     </div>
                 </form>
                 <form action="" method="post">
-                    <div class="row">
-                        <div class="input-field nom col m6 s12">
-                            <input  value="" id="first_name" name="first_name" type="text" class="validate">
-                            <label for="first_name">First Name</label>
-                        </div>
+                    c
                         <div class="input-field nom col m6 s12">
                             <input  value="" id="last_name" name="last_name" type="text" class="validate">
                             <label for="last_name">Last Name</label>

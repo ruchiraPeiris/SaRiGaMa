@@ -39,10 +39,11 @@ class StudentUpdateController extends Controller
         $std_city = $request['std_city'];
 
 
-        DB::update(
-            "UPDATE student(student_id, std_first_name, std_middle_name, std_last_name, std_dob,std_gender,std_city)
-                      VALUES('$student_id', '$std_first_name', '$std_middle_name', '$std_last_name','$std_dob', '$std_gender','$std_city') WHERE student_id=?,[$student_id]"
-        );
+        DB::statement(
+            "UPDATE student SET student_id = ?, std_first_name=?, std_middle_name=?, std_last_name=?, std_dob = ? ,std_gender=?,std_city =? WHERE student_id = ?",
+                      [$student_id, $std_first_name, $std_middle_name, $std_last_name,$std_dob,$std_gender,$std_city,$student_id]);
+        
+        return view('Admin.studentUpdate');
 
 
     }
